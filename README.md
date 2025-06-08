@@ -68,6 +68,65 @@ Auto_Monility_With_RaspberryPi/
 | 모드 표시 LED (녹색 LED) | `Pin 13` | 자동 모드일 때 ON |
 
 ---
+## 🎮 RC 송수신기 & 아두이노 핀 매핑 구조
+
+![Arduino 회로도](Images/Receiver_And_Transmitter.png)
+
+이 프로젝트는 **Radiolink AT9 송신기 + 수신기 + Arduino UNO** 기반으로 구성되어 있으며, 각 채널과 핀의 매핑은 다음과 같습니다.
+
+---
+
+### 🧭 1. 수신기(Receiver) → 아두이노 연결
+
+- **CH1 (조향)**  
+  - Signal → Arduino `Pin 3`  
+  - 아두이노 PWM 입력 처리 후 → 조향 서보 제어 (`Pin 6`)
+
+- **CH2 (전진/후진)**  
+  - Signal → Arduino `Pin 9`  
+  - 아두이노 PWM 입력 처리 후 → ESC 제어 (`Pin 10`)
+
+- **CH5 (우측 깜빡이)**  
+  - Signal → Arduino `Pin A1`  
+  - 조건 만족 시 LED1 점멸
+
+- **CH7 (좌측 깜빡이)**  
+  - Signal → Arduino `Pin A2`  
+  - 조건 만족 시 LED2 점멸
+
+- **CH8 (모드 전환 스위치)**  
+  - Signal → Arduino `Pin A0`  
+  - 1500µs 초과 시 → 자동 모드 LED (`Pin 13`) ON
+
+📝 참고: 수신기의 VCC + GND 라인은 CH1과 CH2에만 공급 (나머지는 Signal만 연결됨)  
+🟢 측면 GND 포트 사용 가능 (Breadboard용 GND 확장)
+
+---
+
+### 🎮 2. 송신기(Radiolink AT9) 채널 기능
+
+- **CH1**: 조향 (우/좌 조이스틱 → 핸들 각도 조절)
+- **CH2**: 전/후진 (상/하 조이스틱 → 모터 방향/속도)
+- **CH5**: 우측 깜빡이 제어용 채널 (스위치)
+- **CH7**: 좌측 깜빡이 제어용 채널 (스위치)
+- **CH8**: 자동/수동 모드 전환 스위치 (토글형 스위치)
+
+---
+
+### 🔧 종합 요약
+
+| 채널 | 기능               | 아두이노 핀 |
+|-------|--------------------|--------------|
+| CH1   | 조향 입력          | Pin 3 (in) → Pin 6 (out) |
+| CH2   | 전진/후진 입력     | Pin 9 (in) → Pin 10 (out) |
+| CH5   | 우측 깜빡이        | Pin A1 |
+| CH7   | 좌측 깜빡이        | Pin A2 |
+| CH8   | 모드 전환 스위치   | Pin A0 |
+| -     | 자동 모드 LED 표시 | Pin 13 |
+
+💡 PWM 값은 `pulseIn()` 함수로 읽고, `map()` → `writeMicroseconds()`로 서보/ESC에 전달됩니다.
+
+---
 
 ### 🧠 기능 요약
 
