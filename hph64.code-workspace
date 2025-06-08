@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"name": "RC_Car_Limite_Speed",
+			"path": "../RC_Car/RC_Car_Limite_Speed"
+		},
+		{
+			"name": "Auto_Monility_With_RaspberryPi",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
