@@ -5,7 +5,7 @@
 // 입력 핀
 const int PIN_STEERING_IN = 3;    // 수신기 CH1
 const int PIN_THROTTLE_IN = 9;    // 수신기 CH2
-const int PIN_SWA_IN      = A0;   // SwA → CH4 모드 스위치
+const int PIN_SWA_IN      = A0;   // SwA → CH8 모드 스위치
 const int PIN_CH5_IN      = A1;   // SwC → CH5 PWM 입력
 const int PIN_CH7_IN      = A2;   // SwD → CH7 PWM 입력
 
