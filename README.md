@@ -28,7 +28,7 @@
 
 ---
 
-## 📷 영상 처리 및 라인트레이싱 제어 (`raspi_line_follower.py`)
+## 📷 영상 처리 및 라인트레이싱 제어 (`Websockets_Connect_With_Arduino.py`)
 
 ### 🔹 `detect_line()`
 > `ROI` 영역을 추출해 중심점(cx)을 계산합니다.
@@ -70,7 +70,7 @@ if recovering:
 
 ### 🔹 전송 형식
 
-```python
+```
 ser.write(f"{steer_cmd},{thr_cmd}\n".encode())
 ```
 형식: "조향값,스로틀값\n"
