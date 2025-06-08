@@ -23,8 +23,8 @@
 
 | 파일명 | 설명 |
 |--------|------|
-| `arduino_auto_manual.ino` | RC카 하드웨어(PWM, 서보, ESC, LED 제어) |
-| `raspi_line_follower.py` | Raspberry Pi에서 영상 처리 및 시리얼 송신 |
+| `main.cpp` | RC카 하드웨어(PWM, 서보, ESC, LED 제어) |
+| `Websockets_Connect_With_Arduino.py` | Raspberry Pi에서 영상 처리 및 시리얼 송신 |
 
 ---
 
