@@ -29,19 +29,21 @@
 ---
 ## 📁 프로젝트 디렉토리 구조
 
+```
 Auto_Monility_With_RaspberryPi/
-├── .pio/
-├── .vscode/ 
-├── include/ 
-├── lib/ 
+├── .pio/                    
+├── .vscode/                
+├── include/                 
+├── lib/                     
 ├── src/
-│ └── main.cpp # 아두이노 메인 소스코드
-├── test/ 
-├── .gitignore 
-├── platformio.ini
-└── README.md 
+│   └── main.cpp             # 아두이노 메인 소스코드
+├── test/                   
+├── .gitignore               
+├── platformio.ini           
+└── README.md                
+```
 
-- 자율 주행 로직과 웹 소켓 로직이 들어있는 Websockets_Connect_With_Arduino.py은 별도의 디렉토리 구조 형식입니다.
+- # 자율 주행 로직과 웹 소켓 로직이 들어있는 Websockets_Connect_With_Arduino.py은 별도의 디렉토리 구조 형식입니다.
 
 ---
 ## 🔌 아두이노 회로 연결 구성도
