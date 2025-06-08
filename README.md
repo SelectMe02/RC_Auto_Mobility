@@ -43,7 +43,7 @@ Auto_Monility_With_RaspberryPi/
 └── README.md                
 ```
 
-- # 자율 주행 로직과 웹 소켓 로직이 들어있는 Websockets_Connect_With_Arduino.py은 별도의 디렉토리 구조 형식입니다.
+- **자율 주행 로직과 웹 소켓 로직이 들어있는 Websockets_Connect_With_Arduino.py은 별도의 디렉토리 구조 형식입니다.**
 
 ---
 ## 🔌 아두이노 회로 연결 구성도
