@@ -284,7 +284,7 @@ if (sscanf(buf, "%d,%d", &steerCmd, &throttleCmd) == 2) {
 ---
 
 
-ㅍㅍ### ✅ 실시간 웹캠 스트리밍 
+### ✅ 실시간 웹캠 스트리밍 
 
 > Raspberry Pi에서 카메라 영상을 WebSocket으로 송출
 
@@ -295,8 +295,7 @@ JPEG로 인코딩 → base64 인코딩 후 전송
 
 전송 간격은 약 30fps
 
-```await asyncio.sleep(0.03)
-```
+```await asyncio.sleep(0.03)```
 
 ---
 
