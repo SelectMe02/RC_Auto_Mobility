@@ -169,7 +169,8 @@ void loop() {
     // 남아있는 시리얼 입력 버퍼 비우기
     while (Serial.available()) Serial.read();
   }
-}```
+}
+```
 ---
 # 🧠 RC Auto Mobility 기능 요약
 
