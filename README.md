@@ -123,6 +123,42 @@ servoThrottle.writeMicroseconds(pwmOut);
 - RC 수신기의 입력값을 그대로 서보 및 ESC에 적용
 
   ---
+### 🚀 자율 주행 모드: 속도 제한 및 PWM 변환 처리
+
+자율 주행 시, Raspberry Pi에서 수신한 `steerCmd`, `throttleCmd` 값을 PWM으로 안전하게 변환합니다.
+
+```cpp
+if (sscanf(buf, "%d,%d", &steerCmd, &throttleCmd) == 2) {
+    steerCmd = constrain(steerCmd, -100, 100); // 조향값 제한
+
+    if (throttleCmd > 0)
+        throttleCmd = constrain(throttleCmd, 0, FORWARD_LIMIT);  // 전진 제한
+    else
+        throttleCmd = constrain(throttleCmd, -REVERSE_LIMIT, 0); // 후진 제한
+
+    steerPulse = map(steerCmd, -100, 100, 1000, 2000); // 조향 PWM 변환
+
+    if (throttleCmd >= 0)
+        throttlePulse = map(throttleCmd, 0, FORWARD_LIMIT, 1520, 1830); // 전진 PWM 변환
+    else
+        throttlePulse = map(throttleCmd, -REVERSE_LIMIT, 0, 1100, 1480); // 후진 PWM 변환
+
+    if (throttlePulse > 1500 && throttlePulse < 1553)
+        throttlePulse = 1553; // 정지 상태와 구분 위한 보정
+}
+```
+## ✅ 기능 설명
+
+| 항목 | 설명 |
+|------|------|
+| `constrain()` | 조향/속도 명령을 안전한 범위로 제한 |
+| `map()` | -100~100 범위의 명령을 PWM (1000~2000)으로 변환 |
+| `FORWARD_LIMIT`, `REVERSE_LIMIT` | 최대 속도 제한값 (상수로 정의됨) |
+| `throttlePulse > 1500 && < 1573` 보정 | 정지 상태(1500)와 미세 전진 상태 간의 충돌 방지 |
+
+
+---
+
 
   ### ✅ 실시간 웹캠 스트리밍 
 
