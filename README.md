@@ -27,6 +27,23 @@
 | `Websockets_Connect_With_Arduino.py` | Raspberry Pi에서 영상 처리 및 시리얼 송신 |
 
 ---
+## 📁 프로젝트 디렉토리 구조
+
+Auto_Monility_With_RaspberryPi/
+├── .pio/
+├── .vscode/ 
+├── include/ 
+├── lib/ 
+├── src/
+│ └── main.cpp # 아두이노 메인 소스코드
+├── test/ 
+├── .gitignore 
+├── platformio.ini
+└── README.md 
+
+- 자율 주행 로직과 웹 소켓 로직이 들어있는 Websockets_Connect_With_Arduino.py은 별도의 디렉토리 구조 형식입니다.
+
+---
 ## 🔌 아두이노 회로 연결 구성도
 
 아래 회로는 **자동/수동 모드 전환**, **방향 지시등 LED**, **서보 및 ESC 제어**, **RC 수신기 채널 입력** 핀 구성을 시각화한 도식입니다.
