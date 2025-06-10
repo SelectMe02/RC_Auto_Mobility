@@ -1,3 +1,5 @@
+# 웹 소켓 연동에 관한 파이썬 코드
+
 ```import asyncio
 import base64
 import cv2
@@ -226,3 +228,83 @@ if __name__ == '__main__':
 | RECOVER | 일정 시간 후진 + 회전 |
 | FORWARD_DELAY | 복구 종료 후 전진 대기 |
 | MAN2AUTO_DELAY | 수동 → 자율 전환 대기 시간 중 |
+
+---
+
+# 웹 소켓 연동을 통한 실시간 웹 브라우징에 관한 html 코드
+
+```<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Pi Camera WebSocket Stream</title>
+</head>
+<body>
+  <h3>실시간 스트리밍</h3>
+  
+  <!-- 실시간 영상이 표시될 이미지 태그 -->
+  <img id="video" width="880" height="660" />
+
+  <script>
+    const img = document.getElementById('video'); // 이미지 태그 요소를 가져옴
+
+    // WebSocket 객체 생성: Raspberry Pi의 WebSocket 서버에 연결
+    const ws = new WebSocket('ws://172.20.10.7:8765/');
+
+    // 서버로부터 메시지를 받으면 실행됨 (base64로 인코딩된 JPEG 이미지 수신)
+    ws.onmessage = ev => {
+      img.src = 'data:image/jpeg;base64,' + ev.data; // 수신 데이터를 이미지로 표시
+    };
+
+    // 연결 성공 시 콘솔에 로그 출력
+    ws.onopen = () => console.log('WebSocket 연결 성공');
+
+    // 연결 종료 시 콘솔에 로그 출력
+    ws.onclose = () => console.log('연결 종료');
+  </script>
+</body>
+</html>
+```
+
+## 🌐 웹 기반 실시간 영상 스트리밍 (HTML + WebSocket)
+
+이 프로젝트에서는 Raspberry Pi에서 OpenCV로 처리된 이미지를 WebSocket으로 전송하고,  
+웹 브라우저에서는 `<img>` 태그를 활용하여 실시간으로 스트리밍을 표시합니다.
+
+---
+
+### 📁 관련 HTML 코드
+
+```html
+<img id="video" width="880" height="660" />
+<script>
+  const img = document.getElementById('video');
+  const ws = new WebSocket('ws://172.20.10.7:8765/');
+
+  ws.onmessage = ev => {
+    img.src = 'data:image/jpeg;base64,' + ev.data;
+  };
+
+  ws.onopen = () => console.log('WebSocket 연결 성공');
+  ws.onclose = () => console.log('연결 종료');
+</script>
+```
+
+---
+
+### 🔎 동작 원리
+
+| 항목 | 설명 |
+|------|------|
+| `WebSocket` | Raspberry Pi에서 실행 중인 Python 서버에 연결 |
+| `ev.data` | 서버로부터 수신한 base64 인코딩된 JPEG 이미지 |
+| `<img>` 태그 | 수신한 이미지를 실시간으로 브라우저에 표시 |
+| 포트 | 기본 포트: `ws://172.20.10.7:8765/` (파이에서 제공 중) |
+
+- **장점**: 별도 플러그인 없이 웹 브라우저만으로 실시간 카메라 영상을 확인 가능  
+- **주의사항**: Raspberry Pi와 클라이언트(PC)는 동일 네트워크(Wi-Fi) 내에 있어야 함
+
+---
+
+💡 WebSocket 서버는 [Websockets_Connect_With_Arduino.py]에 포함된 `websockets.serve()` 함수에서 실행되고 있습니다.
+
