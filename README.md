@@ -9,6 +9,7 @@
 ---
 
 ## Youtube Link
+[![RC 시연 영상]](https://youtu.be/8f3zlM8xl1I)
 
 ---
 # 🚗 RC Car 자율주행 시스템
