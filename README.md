@@ -29,6 +29,7 @@
 |--------|------|
 | `main.cpp` | RC카 하드웨어(PWM, 서보, ESC, LED 제어) |
 | `Websockets_Connect_With_Arduino.py` | Raspberry Pi에서 영상 처리 및 시리얼 송신 |
+| `index.html` | 웹 소켓을 기반으로 한 라인 디텍싱 및 트레이싱 실시가 웹 브라우징 |
 
 ---
 ## 📁 프로젝트 디렉토리 구조
